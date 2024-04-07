@@ -2,10 +2,12 @@
 
 argocd steps:
 1.
-sh ```
+
+sh```
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
 ```
+
 2. Expose the service
 sh ```
 kubectl get svc -n argocd
@@ -21,7 +23,7 @@ sh ```
 kubectl get svc argocd-server -n argocd --watch
 ```
 4.
-sh ```
+
 root@ip-172-31-86-153:~kubectl describe svc argocd-server -n argocdocd
 Name:                     argocd-server
 Namespace:                argocd
@@ -46,7 +48,7 @@ Endpoints:                10.1.142.72:8080
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:                   <none>
-sh ```
+
 
 5. Enableing the ingress:
 sh ```
@@ -58,6 +60,15 @@ NAME            TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)           
 argocd-server   LoadBalancer   10.152.183.199   <pending>     80:31581/TCP,443:31431/TCP   9m20s
 ```
 6. To access the application 
-```
+sh ```
  <public ip>:31581
 ```
+
+7. TO get the secrete key
+sh ```
+kubectl get secret <argocd-secret-name> -n argocd -o jsonpath='{.data.admin\.password}' | base64 --decode
+```
+
+
+
+

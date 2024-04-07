@@ -36,8 +36,11 @@ You can follow same procedure in the official  AWS document [Getting started wit
    EC2   
    CloudFormation  
    Note: Check eksctl documentaiton for [Minimum IAM policies](https://eksctl.io/usage/minimum-iam-policies/)
+
+4.   ### Once IAM role created attach that IAM Role to ec2 instance###
+    Actions--> secuity--> Modify IAM Role
    
-4. Create your cluster and nodes 
+5. Create your cluster and nodes 
    ```sh
    eksctl create cluster --name cluster-name  \
    --region region-name \
@@ -52,12 +55,12 @@ You can follow same procedure in the official  AWS document [Getting started wit
    --node-type t2.small \
     ```
 
-5. To delete the EKS clsuter 
+6. To delete the EKS clsuter 
    ```sh 
    eksctl delete cluster microdegree --region ap-south-1
    ```
    
-6. Validate your cluster using by creating by checking nodes and by creating a pod 
+7. Validate your cluster using by creating by checking nodes and by creating a pod 
    ```sh 
    kubectl get nodes
    kubectl run tomcat --image=tomcat 

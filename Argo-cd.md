@@ -23,7 +23,7 @@ just to check :-->
 kubectl get svc argocd-server -n argocd --watch
 ```
 4.
-
+```sh 
 root@ip-172-31-86-153:~kubectl describe svc argocd-server -n argocdocd
 Name:                     argocd-server
 Namespace:                argocd
@@ -48,7 +48,7 @@ Endpoints:                10.1.142.72:8080
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:                   <none>
-
+```
 
 5. Enableing the ingress:
 ```sh 

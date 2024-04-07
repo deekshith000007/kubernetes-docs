@@ -3,23 +3,23 @@
 argocd steps:
 1.
 
-sh```
+```sh 
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
 ```
 
 2. Expose the service
-sh ```
+```sh 
 kubectl get svc -n argocd
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 3.Tunnelining use 
-sh ```
+```sh 
 kubectl get svc argocd-server -n argocd
 ```
 
 just to check :-->
-sh ```
+```sh 
 kubectl get svc argocd-server -n argocd --watch
 ```
 4.
@@ -51,21 +51,22 @@ Events:                   <none>
 
 
 5. Enableing the ingress:
-sh ```
+```sh 
 microk8s enable ingress
 ```
-```
+```sh 
 root@ip-172-31-86-153:~# kubectl get svc argocd-server -n argocd
 NAME            TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
 argocd-server   LoadBalancer   10.152.183.199   <pending>     80:31581/TCP,443:31431/TCP   9m20s
 ```
 6. To access the application 
-sh ```
+```sh 
  <public ip>:31581
 ```
 
 7. TO get the secrete key
-sh ```
+
+```sh
 kubectl get secret <argocd-secret-name> -n argocd -o jsonpath='{.data.admin\.password}' | base64 --decode
 ```
 
